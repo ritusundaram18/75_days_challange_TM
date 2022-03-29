@@ -1,0 +1,25 @@
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        //t.c = o(n^2)
+        //two pointer technique
+        int result = nums[0]+nums[1]+nums[nums.length-1];
+        Arrays.sort(nums);
+        
+        for(int i = 0; i<nums.length-2; i++)
+        {
+            int a = i+1;
+            int b = nums.length-1;
+            
+            while(a<b)
+            {
+                int cur_sum = nums[i]+nums[a]+nums[b];
+                if(cur_sum > target)    b--;
+                else a++;
+                if(Math.abs(cur_sum - target) < Math.abs(result-target))
+                    result = cur_sum;
+            }
+        }
+        return result;
+        
+    }
+}
