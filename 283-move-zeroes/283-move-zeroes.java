@@ -1,22 +1,27 @@
 class Solution {
     public void moveZeroes(int[] nums) {
-    
-       int idx = 0;
+ 
+       int idx =0;
         for(int i=0;i< nums.length;i++)
         {
-          if(nums[i] != 0)
-          {
-              nums[idx] = nums[i];
-              if(idx != i)
-              {
-                  nums[i] = 0;
-              }
-              idx++;
-          }
+            if(nums[i] != 0)
+            {
+                nums[idx] = nums[i];
+                if(idx != i)
+                {
+                    nums[i] = 0;
+                }
+                idx++;
+            }
         }
-      
-    }
 }
+}
+ 
+
+
+
+
+
 //ek idx declre karo
 //i->0 to a.l
 //agar nums of [i] 0 nahi hai toh nums[idx] pe nums[i] dalo aur fir check karo  idx AUR i barbaer nahi hai na
