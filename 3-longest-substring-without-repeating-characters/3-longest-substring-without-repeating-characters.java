@@ -1,13 +1,13 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
     
-       int start =0;
-        int end = 0;
-        int max = 0;
+       int start = 0;
+        int end =0;
+        int max =0;
         int len = s.length();
         
         Set<Character> st = new HashSet<>();
-        while(end<len)
+        while(end < len)
         {
             char ch = s.charAt(end);
             while(st.contains(ch))
@@ -29,4 +29,4 @@ class Solution {
 //set ka use karnge, agar character phele se he present hai , toh remove kr denge  start index se
 //aur nahi  hai to set me add kr denge , end++ kr denge aur max check kr lenge
 //lasr me max return kr denge
-//ACCQUIRE & RELEASE
+//ACCQUIRE till it become invalid & RELEASE till become invalid
