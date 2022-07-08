@@ -1,4 +1,30 @@
-//Brute force
+// //Brute force
+// class Solution {
+//     public int[] corpFlightBookings(int[][] bookings, int n) {
+ 
+//         int res[] = new int [n];
+       
+//         int seats;
+//         for(int j=0;j<bookings.length;j++){
+//             for(int i=bookings[j][0];i<=bookings[j][1];i++)
+//             {
+               
+//                   seats = bookings[j][2];
+//                 res[i-1] +=seats;
+//             }
+//         }
+//         return res;
+//     }
+// }
+
+
+
+
+
+
+//BRUTE-FORCE approach by RITU SUNDARAM
+
+//Brute force - my attempt
 class Solution {
     public int[] corpFlightBookings(int[][] bookings, int n) {
  
@@ -18,6 +44,7 @@ class Solution {
         return res;
     }
 }
+
 
 
 // class Solution {
