@@ -12,6 +12,8 @@ class Solution {
         
         int l = 0 , r = col-1 , t = 0 ,  b = row-1 , d = 0;
         
+        // System.out.println(l,r,t,b,d);
+        
         while(l<=r && t<=b){
             if(d==0){
                 for(int i=l;i<=r;i++){
