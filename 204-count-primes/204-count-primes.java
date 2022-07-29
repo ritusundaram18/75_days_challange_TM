@@ -1,21 +1,24 @@
 class Solution {
     public int countPrimes(int n) {
-   boolean[] pr = new boolean[n+1];
-        for(int i = 0; i < pr.length; i++){
-            pr[i] = true;
+ 
+        
+        int[] sieve=new int[n+1];
+        
+        for(int i = 0; i < sieve.length; i++){
+            sieve[i] = 1;
         }
         
         for(int i = 2; i*i <= n; i++){
             
-            if(pr[i]){
+            if(sieve[i]==1){
                 for(int j = i*i; j <= n; j = j + i){
-                    pr[j] = false;
+                    sieve[j] = 0;
                 }
             }   
         }
         int res = 0;
-        for(int i = 2 ; i < pr.length-1; i++){
-            if(pr[i]) res++;
+        for(int i = 2 ; i < sieve.length-1; i++){
+            if(sieve[i]==1) res++;
         }
         return res;
     }
