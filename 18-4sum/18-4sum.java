@@ -1,41 +1,58 @@
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         Arrays.sort(nums);
-        Set<List<Integer>> result = new HashSet<>();
-        int len = nums.length;
-        
-        int j,k;
-        int sum;
-        for(int i = 0; i< len; i++)
+        int i,j,left,right;
+        int n=nums.length;
+        List<List<Integer>> list= new ArrayList<>();
+       
+        for(i=0;i<n;i++)
         {
-            for(int x =i+1; x<len; x++)
+            for(j=i+1;j<n;j++)
             {
-                j=x+1;
-                k=len-1;
-            
-            while(j<k)
-            {
-                sum = nums[i]+nums[x]+nums[j]+nums[k];
-                if(sum ==  target)
+                long sum=target-nums[j];
+                sum-=nums[i];
+                left=j+1;
+                right=n-1;
+                while(left<right)
                 {
-                    List<Integer> output = new ArrayList<>();
-                    output.add(nums[i]);
-                    output.add(nums[x]);
-                    output.add(nums[j]);
-                    output.add(nums[k]);
-                    result.add(output);
-                    j++;
-                    k--;
-                 }
-                else if(sum > target)
-                    k--;
-                else 
-                    j++;
+                    int sum2=nums[left]+nums[right];
+                    if(sum2>sum)
+                    {
+                        right--;
+                    }
+                    else if(sum2<sum)
+                    {
+                        left++;
+                    }
+                    else
+                    {
+                        List<Integer>ans=new ArrayList<>();
+                        ans.add(nums[i]);
+                        ans.add(nums[j]);
+                        ans.add(nums[left]);
+                        ans.add(nums[right]);
+                        list.add(ans);
+                       
+                        while(left<right && nums[left]==ans.get(2))
+                        {
+                            left++;
+                        }
+                        while(left<right && nums[right]==ans.get(3))
+                        {
+                            right--;
+                        }
+                    }
+                }
+                  while(j+1 < n && nums[j+1]==nums[j])
+                        {
+                            j++;
+                        }
+            }
+            while(i+1 < n && nums[i+1]==nums[i])
+            {
+                i++;
             }
         }
-        
+        return list;
     }
-        return new ArrayList(result);
-        
-}
 }
