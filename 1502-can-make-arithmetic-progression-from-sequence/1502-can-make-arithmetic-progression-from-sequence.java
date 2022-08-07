@@ -12,7 +12,7 @@ class Solution {
             max=Math.max(val,max);
             set.add(val);
         }
-        if(max == min) return true;
+        if(max == min) return true;  // my tricks-ritu
         int d =(max-min)/(arr.length-1);
         // if(d%(n-1)!=0) return false;
         if(d<1) return false;
