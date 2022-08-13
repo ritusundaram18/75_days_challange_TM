@@ -7,7 +7,7 @@ class Solution {
             int n=res.size();
             for(int j=0;j<n;j++)
             {
-                List<Integer> temp = new ArrayList(res.get(j));
+                List<Integer> temp = new ArrayList<>(res.get(j));
                 temp.add(num);
                 res.add(temp);
             }
