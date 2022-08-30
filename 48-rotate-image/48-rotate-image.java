@@ -11,14 +11,14 @@ class Solution {
                     matrix[j][i] = temp;
                 }
         }
-        for(int r =0; r<n; r++){
+        for(int i =0; i<n; i++){
             int left = 0;
             int right = matrix.length-1;
             while(left < right)
             {
-                int temp = matrix[r][left];
-                matrix[r][left] = matrix[r][right];
-                matrix[r][right] = temp;
+                int temp = matrix[i][left];
+                matrix[i][left] = matrix[i][right];
+                matrix[i][right] = temp;
                 left++;
                 right--;
             }
