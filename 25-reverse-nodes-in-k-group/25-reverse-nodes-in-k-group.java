@@ -11,69 +11,53 @@
 
 //pepcoding undrestood it completely
 class Solution {
-    ListNode tt = null;
-    ListNode th = null;
-    
-    public void addFirst(ListNode node)
-    {
-        if(th == null)
-        {
-            th = node;
-            tt = node;
-        }
-        else
-        {
-            node.next = th;
-            th = node;
-        }
-    }
-    public int length(ListNode node)
-    {
-        ListNode cur = node;
-        int len = 0;
-        
-        while(cur != null)
-        {
-            cur = cur.next;
-            len++;
-        }
-        return len;
-    }
-    
     public ListNode reverseKGroup(ListNode head, int k) {
-        if(head == null || head.next ==null || k== 0)
-            return head;
+       
         
-        ListNode oh=null;
-        ListNode ot =null;
-        int len =length(head);
-        ListNode cur = head;
+        ListNode dummy=new ListNode();
+        ListNode curr=head;
+        ListNode prev=dummy;
+        ListNode start=null;
+        int i=0;
         
-        while(len >= k)
+        while(i<k && curr!=null)
         {
-            int tempk = k;
-            while(tempk-- > 0)
+            if(i==0) start=curr;
+            i++;
+            curr=curr.next;
+            if(i<k && curr==null)
             {
-                ListNode forw = cur.next;
-                cur.next = null;
-                addFirst(cur);
-                cur = forw;
+                prev.next=start;
             }
-            if(oh == null)
+            if(i==k)
             {
-                oh = th;
-                ot =tt;
+                ListNode end=curr;
+                ListNode rev=reverse(start,end);
+prev.next=rev;
+                prev=start;
+                i=0;
             }
-            else
-            {
-                ot.next = th;
-                ot=tt;
-            }
-            tt = null;
-            th = null;
-            len -=k;
         }
-        ot.next = cur;
-        return oh;
+        return dummy.next;
+    
     }
+    
+    public ListNode reverse(ListNode start,ListNode end)
+    {
+        ListNode cur=null;
+        ListNode prev=null;
+        
+        while(start !=end)
+        {
+            cur=start;
+            start=start.next;
+            cur.next=prev;
+            prev=cur;
+        }
+        start=prev;
+        return start;
+    }
+        
+        
+        
 }
