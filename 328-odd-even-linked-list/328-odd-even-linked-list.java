@@ -10,22 +10,26 @@
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
-        if(head == null)
-            return null;
+        if(head == null || head.next == null)
+            return head;
+    
+        ListNode fast=head;
+        ListNode slow= head.next;
         
-        ListNode odd = head;
-        ListNode even = head.next;
+        ListNode p=fast;
+        ListNode q=slow;
         
-        ListNode evenHead = even;
-        
-        while(even != null && even.next != null)
+        while(fast.next != null && slow.next !=null)
         {
-            odd.next = even.next;
-            odd = odd.next;
-            even.next = odd.next;
-            even = even.next;
+            fast.next=slow.next;
+            fast=slow.next;
+            slow.next=fast.next;
+            slow=fast.next;
+            // head=head.next;
         }
-        odd.next = evenHead;
-        return head;
+        // slow.next=null;
+        fast.next=q;
+        return p;
+        
     }
 }
