@@ -1,9 +1,3 @@
-// class Solution {
-//     public int nextGreaterElement(int n) {
-        
-//     }
-// }
-
 class Solution {
     public int nextGreaterElement(int n) {
         String number = Integer.toString(n);
