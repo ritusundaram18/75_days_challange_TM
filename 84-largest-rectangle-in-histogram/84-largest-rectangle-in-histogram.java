@@ -1,52 +1,70 @@
 class Solution {
-   public int largestRectangleArea(int[] heights) {
-    
-        
-    int[] left = new int[heights.length]; 
-    int[] right = new int[heights.length];
-    int[] width = new int[heights.length];
-    Stack<Integer> stack = new Stack();
-        
-        
-       //width --- left
-        for(int i=0;i<heights.length;i++){
-            
-            while(!stack.isEmpty() && heights[i]<=heights[stack.peek()]){
-                stack.pop();
-            }
-            
-            if(stack.isEmpty()){
-                left[i] = -1;
-            }else{
-                left[i] = stack.peek();
-            }
-            
-            stack.add(i);
-        }
-        stack.clear();
-        //width --- right
-        for(int i=heights.length-1;i>=0;i--){
-            
-            while(!stack.isEmpty() && heights[i]<=heights[stack.peek()]){
-                stack.pop();
-            }
-            
-            if(stack.isEmpty()){
-                right[i] = heights.length;
-            }else{
-                right[i] = stack.peek();
-            }
-            
-            stack.add(i);
-        }
-        
-        int area = 0;
-        
-         for(int i=0;i<heights.length;i++){
-            width[i] = right[i]-left[i]-1;
-            area = Math.max(heights[i]* width[i] ,area);
-         }
-        
-        return area;
-   }
+    public int largestRectangleArea(int[] heights) {
+ 
+        int max=Integer.MIN_VALUE;
+        int[] a1=nge(heights);
+        int[] a2= ngprevious(heights);
+      for(int i=0;i<heights.length;i++)
+      {
+          int area = (a2[i]-a1[i]-1)*heights[i];
+          max=Math.max(max,area);
+      }
+    return max;    
     }
+    
+    public int[] nge(int[] arr)
+    {
+        Stack<Integer> st =new Stack<>();
+        int n=arr.length;
+        int ngleft[]=new int[n];
+                //loop from start
+        for(int i=0;i<n;i++)
+        {
+                while(st.size()>0 && arr[st.peek()]>=arr[i])
+                {
+                    // ngleft[st.pop()]=arr[i];
+                        st.pop();
+                }   
+        
+        if(st.size() ==0)
+        {
+            ngleft[i]=-1;
+        }
+        else{
+            ngleft[i]=st.peek();
+        }
+        st.push(i);  
+        }
+        return ngleft;
+        
+    }
+    
+    //right side
+    public int[] ngprevious(int[] arr)
+    {
+        Stack<Integer> st2= new Stack<>();
+        
+        int n=arr.length;
+        int ngright[]=new int[n];
+        
+        for(int i=n-1;i>=0;i--)
+        {
+             while(st2.size()>0 && arr[st2.peek()] >=arr[i])
+            {
+                 st2.pop();
+             }
+            
+             if(st2.size() ==0)
+             {
+                 ngright[i]=n;
+             }
+            
+            else{
+            ngright[i]=st2.peek();
+            }
+             st2.push(i); 
+        }
+        return ngright;
+    }
+    
+}
